@@ -92,7 +92,6 @@ namespace ParkingAPI.Services
 
         public bool ExistsQuota(int vehicleType)
         {
-            return false;
             int avaliableCells = _cellService.GetCellByVehicleType(vehicleType).NumCellAvaliable;
             int busyPlaces = GetEntriesByVehicleType(vehicleType);
 
