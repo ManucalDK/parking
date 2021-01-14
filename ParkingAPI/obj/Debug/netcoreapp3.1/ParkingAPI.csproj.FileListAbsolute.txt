@@ -26,6 +26,7 @@ C:\Users\andres.ruales\source\repos\ParkingAPI\ParkingAPI\bin\Debug\netcoreapp3.
 C:\Users\andres.ruales\source\repos\ParkingAPI\ParkingAPI\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\andres.ruales\source\repos\ParkingAPI\ParkingAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\andres.ruales\source\repos\ParkingAPI\ParkingAPI\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\andres.ruales\source\repos\ParkingAPI\ParkingAPI\obj\Debug\netcoreapp3.1\ParkingAPI.csprojAssemblyReference.cache
 C:\Users\andres.ruales\source\repos\ParkingAPI\ParkingAPI\obj\Debug\netcoreapp3.1\ParkingAPI.AssemblyInfoInputs.cache
 C:\Users\andres.ruales\source\repos\ParkingAPI\ParkingAPI\obj\Debug\netcoreapp3.1\ParkingAPI.AssemblyInfo.cs
 C:\Users\andres.ruales\source\repos\ParkingAPI\ParkingAPI\obj\Debug\netcoreapp3.1\ParkingAPI.csproj.CoreCompileInputs.cache
@@ -38,4 +39,3 @@ C:\Users\andres.ruales\source\repos\ParkingAPI\ParkingAPI\obj\Debug\netcoreapp3.
 C:\Users\andres.ruales\source\repos\ParkingAPI\ParkingAPI\obj\Debug\netcoreapp3.1\ParkingAPI.dll
 C:\Users\andres.ruales\source\repos\ParkingAPI\ParkingAPI\obj\Debug\netcoreapp3.1\ParkingAPI.pdb
 C:\Users\andres.ruales\source\repos\ParkingAPI\ParkingAPI\obj\Debug\netcoreapp3.1\ParkingAPI.genruntimeconfig.cache
-C:\Users\andres.ruales\source\repos\ParkingAPI\ParkingAPI\obj\Debug\netcoreapp3.1\ParkingAPI.csprojAssemblyReference.cache
