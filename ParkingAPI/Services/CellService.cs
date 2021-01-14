@@ -1,10 +1,11 @@
-﻿using ParkingAPI.Models;
-using Entities.Models;
+﻿using ParkingAPI.Data;
+using ParkingAPI.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ParkingAPI.Exceptions;
+using ParkingAPI.Services.Interfaces;
 
 namespace ParkingAPI.Services
 {
@@ -13,7 +14,10 @@ namespace ParkingAPI.Services
         private readonly ParkingContext _context;
 
 
-        public CellService(ParkingContext context) => _context = context;
+        public CellService(ParkingContext context)
+        {
+            _context = context;
+        }
 
 
         public async Task<List<Cell>> GetCells()
@@ -43,7 +47,7 @@ namespace ParkingAPI.Services
             var cell = await _context.Cells.FindAsync(id);
             if (cell == null)
             {
-                throw new NotFoundException($"The cell with code {id} was not found");
+                throw new CellException($"The cell with code {id} was not found");
             }
 
             _context.Cells.Remove(cell);
@@ -57,7 +61,7 @@ namespace ParkingAPI.Services
 
             if (id != cell.Id)
             {
-                throw new BadRequestException();
+                throw new CellException();
             }
 
             _context.Entry(cell).State = EntityState.Modified;
@@ -71,7 +75,7 @@ namespace ParkingAPI.Services
             {
                 if (!CellExists(id))
                 {
-                    throw new NotFoundException($"The cell with code { id} was not found");
+                    throw new CellException($"The cell with code { id} was not found");
                 }
                 else
                 {

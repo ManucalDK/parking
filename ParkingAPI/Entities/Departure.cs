@@ -1,18 +1,18 @@
 ﻿using ParkingAPI.Interfaces;
 using System;
-using System.ComponentModel.DataAnnotations;
 
-namespace ParkingAPI.DTO
+namespace ParkingAPI.Entities
 {
-    public class DepartureDTO: IDeparture
+    public class Departure: IDeparture
     {
+        public int Id { get; set; }
+
         public DateTime DepartureTime { get; set; }
 
         public int IdEntry { get; set; }
 
         public decimal RateTotalValue { get; set; }
 
-        [Required]
         public string IdVehicle { get; set; }
     }
 }

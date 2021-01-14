@@ -1,10 +1,10 @@
 ﻿using ParkingAPI.DTO;
 using ParkingAPI.Exceptions;
-using ParkingAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ParkingAPI.Services.Interfaces;
 
 namespace ParkingAPI.Controllers
 {
@@ -38,7 +38,7 @@ namespace ParkingAPI.Controllers
                 }
                 catch (Exception e)
                 {
-                    if (e is NotConfiguredException || e is NotQuotaException || e is PicoPlacaException || e is CCException || e is EntryException)
+                    if (e is NotConfiguredException || e is EntryException)
                     {
                         return UnprocessableEntity(e.Message);
                     } else

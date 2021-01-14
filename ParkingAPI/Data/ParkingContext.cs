@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Entities.Models;
+using ParkingAPI.Entities;
 using System.Collections.Generic;
-using ParkingAPI.Services;
+using ParkingAPI.Enums;
 
-namespace ParkingAPI.Models
+namespace ParkingAPI.Data
 {
     public class ParkingContext: DbContext
     {

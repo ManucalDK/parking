@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ParkingAPI.Models
+namespace ParkingAPI.Services.Interfaces
 {
     public interface IDepartureService
     {

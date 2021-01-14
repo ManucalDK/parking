@@ -1,4 +1,4 @@
-﻿namespace ParkingAPI.Services
+﻿namespace ParkingAPI.Enums
 {
     public enum VehicleTypeEnum
     {

@@ -1,13 +1,16 @@
 ﻿using ParkingAPI.Interfaces;
 
-namespace ParkingAPI.DTO
+namespace ParkingAPI.Entities
 {
-    class RateDTO: IRate
+    public class Rate: IRate
     {
+        public int Id { get; set; }
+
         public int IdVehicleType { get; set; }
 
         public decimal HourValue { get; set; }
 
-        public decimal DayValue{ get; set; }
+        public decimal DayValue { get; set; }
+
     }
 }

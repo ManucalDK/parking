@@ -5,8 +5,10 @@ using System.Threading.Tasks;
 using ParkingAPI.DTO;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using Entities.Models;
-using ParkingAPI.Models;
+using ParkingAPI.Entities;
+using ParkingAPI.Data;
+using ParkingAPI.Enums;
+using ParkingAPI.Services.Interfaces;
 
 namespace ParkingAPI.Services
 {
@@ -52,7 +54,7 @@ namespace ParkingAPI.Services
 
             if (!ExistsQuota(entry.IdVehicleType))
             {
-                throw new NotQuotaException("It doesn't exists quotas");
+                throw new EntryException("It doesn't exists quotas");
             }
 
 
@@ -67,12 +69,12 @@ namespace ParkingAPI.Services
 
             if (HasPicoPlaca((int)DateTime.Now.DayOfWeek, numberResult))
             {
-                throw new PicoPlacaException("The vehicle has pico placa");
+                throw new EntryException("The vehicle has pico placa");
             }
 
             if ((entry.IdVehicleType == (int)VehicleTypeEnum.motorcycle) && string.IsNullOrEmpty(entry.CC))
             {
-                throw new CCException("The vehicle is a motorcycle. The CC is missing");
+                throw new EntryException("The vehicle is a motorcycle. The CC is missing");
             }
 
             Entry entryModel = new Entry();
@@ -90,6 +92,7 @@ namespace ParkingAPI.Services
 
         public bool ExistsQuota(int vehicleType)
         {
+            return false;
             int avaliableCells = _cellService.GetCellByVehicleType(vehicleType).NumCellAvaliable;
             int busyPlaces = GetEntriesByVehicleType(vehicleType);
 

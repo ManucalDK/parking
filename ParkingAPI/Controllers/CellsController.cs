@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Entities.Models;
-using ParkingAPI.Models;
+using ParkingAPI.Entities;
 using ParkingAPI.Exceptions;
+using ParkingAPI.Services.Interfaces;
 
 namespace ParkingAPI.Controllers
 {
@@ -50,13 +48,9 @@ namespace ParkingAPI.Controllers
             {
                 await _cellService.PutCell(id, cell);
             }
-            catch(BadRequestException exception)
+            catch(CellException exception)
             {
                 return BadRequest(exception.Message);
-            }
-            catch (NotFoundException exception)
-            {
-                return NotFound(exception.Message);
             }
             catch (System.Exception)
             {

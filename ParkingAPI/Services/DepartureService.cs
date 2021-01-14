@@ -1,12 +1,14 @@
 ﻿using ParkingAPI.DTO;
-using ParkingAPI.Models;
+using ParkingAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
-using Entities.Models;
+using ParkingAPI.Entities;
 using System;
 using ParkingAPI.Exceptions;
 using System.Collections.Generic;
+using ParkingAPI.Enums;
+using ParkingAPI.Services.Interfaces;
 
 namespace ParkingAPI.Services
 {
@@ -17,7 +19,10 @@ namespace ParkingAPI.Services
         const int CCLimitSurcharge = 500;
         const int dayhours = 24;
 
-        public DepartureService(ParkingContext context) => _context = context;
+        public DepartureService(ParkingContext context)
+        {
+            _context = context;
+        }
 
         public async Task<List<DepartureDTO>> GetDepartures()
         {

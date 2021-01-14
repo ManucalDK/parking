@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ParkingAPI.DTO;
 using ParkingAPI.Exceptions;
-using ParkingAPI.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ParkingAPI.Services.Interfaces;
 
 namespace ParkingAPI.Controllers
 {
@@ -38,7 +38,7 @@ namespace ParkingAPI.Controllers
                 }
                 catch (Exception e)
                 {
-                    if (e is DepartureException)
+                    if (e is CellException)
                     {
                         return UnprocessableEntity(e.Message);
                     }

@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace ParkingAPI.Exceptions
 {
     [Serializable]
-    internal class EntryException : Exception
+    public class EntryException : Exception
     {
         public EntryException()
         {

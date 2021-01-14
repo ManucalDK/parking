@@ -1,8 +1,8 @@
-﻿using Entities.Models;
+﻿using ParkingAPI.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ParkingAPI.Models
+namespace ParkingAPI.Services.Interfaces
 {
     public interface ICellService
     {

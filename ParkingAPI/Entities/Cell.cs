@@ -1,9 +1,10 @@
 ﻿using ParkingAPI.Interfaces;
 
-namespace ParkingAPI.DTO
+namespace ParkingAPI.Entities
 {
-    class CellDTO: ICell
+    public class Cell: ICell
     {
+        public int Id { get; set; }
 
         public int IdVehicleType { get; set; }
 

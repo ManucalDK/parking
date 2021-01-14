@@ -1,9 +1,11 @@
 ﻿using ParkingAPI.Interfaces;
 
-namespace ParkingAPI.DTO
+namespace ParkingAPI.Entities
 {
-    class VehicleTypeDTO: IVehicleType
+    public class VehicleType: IVehicleType
     {
+        public int Id { get; set; }
+
         public string InternalName { get; set; }
 
         public string Description { get; set; }

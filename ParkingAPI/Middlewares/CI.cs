@@ -1,6 +1,6 @@
 ﻿using ParkingAPI.Services;
 using Microsoft.Extensions.DependencyInjection;
-using ParkingAPI.Models;
+using ParkingAPI.Services.Interfaces;
 
 namespace ParkingAPI.Middlewares
 {
