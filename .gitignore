@@ -1,2 +1,4 @@
-.vs\PargkinAPi
-PargkinAPi/obj/*
+ParkingAPI/obj
+ParkingAPI/bin
+.vs
+ParkingAPI.csproj.user
