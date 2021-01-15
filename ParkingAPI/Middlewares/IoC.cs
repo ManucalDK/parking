@@ -5,7 +5,7 @@ using ParkingAPI.Services.Interfaces;
 namespace ParkingAPI.Middlewares
 {
     // Control inversion
-    public static class CI
+    public static class IoC
     {
         public static IServiceCollection AddDependency(IServiceCollection services)
         {
