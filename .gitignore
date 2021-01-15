@@ -2,3 +2,5 @@ ParkingAPI/obj
 ParkingAPI/bin
 .vs
 ParkingAPI.csproj.user
+ParkingTest/bin
+ParkingTest/obj
