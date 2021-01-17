@@ -1,6 +1,13 @@
+.vs
+AppCore/bin
+AppCore/obj
+Application/bin
+Application/obj
+Infrastructure/bin
+Infrastructure/obj
 ParkingTest/bin
 ParkingTest/obj
-.vs
-ParkingApi/bin
-ParkingApi/obj
-ParkingAPI.csproj.user
+TestResults
+WebApplication1/bin
+WebApplication1/obj
+WebApp.csproj.user
