@@ -51,6 +51,12 @@ namespace Application.Services
             double totalCharge;
             var departureTime = DateTime.Now;
             EntryEntity lastEntry = _entryRepository.List(er => er.IdVehicle == departure.IdVehicle).LastOrDefault();
+
+            if(lastEntry == null)
+            {
+                throw new DepartureException("No existe un registro de entrada para el vehículo");
+            }
+
             RateEntity rateEntity = _rateService.GetRateByVehicleType(lastEntry.IdVehicleType);
             var difference = departureTime - lastEntry.EntryTime;//Math.Ceiling((departureTime - lastEntry.EntryTime).TotalHours);
             int days = difference.Days;
