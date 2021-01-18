@@ -7,7 +7,7 @@ namespace ParkingTest.Builders
 {
     public class EntryEntityBuilder
     {
-        public int IdVehicleType { get; set; }
+        public VehicleTypeEnum IdVehicleType { get; set; }
         public string CC { get; set; }
         public string IdVehicle { get; set; }
         public DateTime EntryTime { get; set; }
@@ -16,7 +16,7 @@ namespace ParkingTest.Builders
 
         public EntryEntityBuilder()
         {
-            IdVehicleType = (int)VehicleTypeEnum.motorcycle;
+            IdVehicleType = VehicleTypeEnum.motorcycle;
             IdVehicle = "SFL55D";
             CC = "100";
             EntryTime = DateTime.Now;
@@ -31,7 +31,7 @@ namespace ParkingTest.Builders
 
         public EntryEntityBuilder WithVehicleType(VehicleTypeEnum vehicleId)
         {
-            IdVehicleType = (int)vehicleId;
+            IdVehicleType = vehicleId;
             return this;
         }
 

@@ -4,18 +4,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace WebApp.Models
 {
-    public class EntryModel
+    public class DepartureModel
     {
-        [Required]
-        public VehicleTypeEnum IdVehicleType { get; set; }
-
-        public string CC { get; set; }
-
         [Required]
         public string IdVehicle { get; set; }
 
         public string Id { get; set; }
 
-        public DateTime EntryTime{ get; set; }
+        public DateTime DepartureTime{ get; set; }
+
+        public double RateTotalValue{ get; set; }
     }
 }

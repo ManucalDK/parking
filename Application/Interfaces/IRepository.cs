@@ -11,7 +11,6 @@ namespace Application.Interfaces
         IEnumerable<T> List();
         IEnumerable<T> List(Expression<Func<T, bool>> predicate);
         T Add(T entity);
-        void Delete(T entity);
-        void Edit(T entity);
+        void Update(T entity);
     }
 }

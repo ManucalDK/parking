@@ -40,13 +40,13 @@ namespace Infrastructure.Data
 
             modelBuilder.Entity<CellEntity>().HasData(cells.ToArray());
 
-            List<Rate> rates = new List<Rate>
+            List<RateEntity> rates = new List<RateEntity>
             {
-                new Rate { Id = Guid.NewGuid().ToString(), IdVehicleType = (int)VehicleTypeEnum.car, HourValue = 1000, DayValue = 8000 },
-                new Rate { Id = Guid.NewGuid().ToString(), IdVehicleType = (int)VehicleTypeEnum.motorcycle, HourValue = 500, DayValue = 4000 }
+                new RateEntity { Id = Guid.NewGuid().ToString(), IdVehicleType = VehicleTypeEnum.car, HourValue = 1000, DayValue = 8000,  DayChargeFrom = 9 },
+                new RateEntity { Id = Guid.NewGuid().ToString(), IdVehicleType = VehicleTypeEnum.motorcycle, HourValue = 500, DayValue = 4000, DayChargeFrom = 9, SpecialChargeValue = 2000, SpecialChargeFromCC = 500}
             };
 
-            modelBuilder.Entity<Rate>().HasData(rates.ToArray());
+            modelBuilder.Entity<RateEntity>().HasData(rates.ToArray());
 
             List<PlacaEntity> placaEntities = new List<PlacaEntity>
             {

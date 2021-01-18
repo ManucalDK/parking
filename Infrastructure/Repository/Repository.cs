@@ -48,10 +48,5 @@ namespace Infrastructure.Repository
             _dbContext.SaveChanges();
             return entity;
         }
-
-        public void Edit(T entity)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

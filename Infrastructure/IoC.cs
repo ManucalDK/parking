@@ -17,6 +17,7 @@ namespace Infrastructure
             services.AddTransient<ICellService, CellService>();
             services.AddTransient<IDepartureService, DepartureService>();
             services.AddTransient<IPlacaService, PlacaService>();
+            services.AddTransient<IRateService, RateService>();
 
             return services;
         }

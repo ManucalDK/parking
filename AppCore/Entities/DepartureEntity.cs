@@ -8,7 +8,7 @@ namespace AppCore.Entities
 
         public string IdEntry { get; set; }
 
-        public decimal RateTotalValue { get; set; }
+        public double RateTotalValue { get; set; }
 
         public string IdVehicle { get; set; }
     }

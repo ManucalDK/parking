@@ -1,4 +1,5 @@
-﻿using AppCore.Enums;
+﻿using AppCore.Entities;
+using AppCore.Enums;
 
 namespace Application.Interfaces
 {
@@ -6,6 +7,9 @@ namespace Application.Interfaces
     {
         bool ExistsQuotaByVehicleType(VehicleTypeEnum vehicleType);
 
+        CellEntity DecreaseCell(VehicleTypeEnum vehicleType, int decrease);
+
+        CellEntity IncreaseCell(VehicleTypeEnum vehicleType, int increase);
 
     }
 }

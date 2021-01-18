@@ -1,10 +1,11 @@
-﻿using System;
+﻿using AppCore.Enums;
+using System;
 
 namespace Application.DTOs
 {
     public class DTOEntry : BaseDTO
     {
-        public int IdVehicleType { get; set; }
+        public VehicleTypeEnum IdVehicleType { get; set; }
 
         public string CC { get; set; }
 

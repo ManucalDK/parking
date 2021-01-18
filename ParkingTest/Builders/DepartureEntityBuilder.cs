@@ -9,7 +9,7 @@ namespace ParkingTest.Builders
     {
         public DateTime DepartureTime { get; set; }
         public string IdEntry { get; set; }
-        public decimal RateTotalValue { get; set; }
+        public double RateTotalValue { get; set; }
         public string IdVehicle { get; set; }
         public string Id { get; set; }
 
@@ -17,7 +17,7 @@ namespace ParkingTest.Builders
         {
             DepartureTime = DateTime.Now;
             IdEntry = Guid.NewGuid().ToString();
-            RateTotalValue = 5000m;
+            RateTotalValue = 5000d;
             IdVehicle = "SFL55D";
         }
 
@@ -33,7 +33,7 @@ namespace ParkingTest.Builders
             return this;
         }
 
-        public DepartureEntityBuilder WithRateTotalValue(decimal rate)
+        public DepartureEntityBuilder WithRateTotalValue(double rate)
         {
             RateTotalValue = rate;
             return this;

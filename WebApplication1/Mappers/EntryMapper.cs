@@ -1,6 +1,4 @@
 ﻿using Application.DTOs;
-using System;
-using System.Collections.Generic;
 using WebApp.Models;
 
 namespace WebApp.Mappers
@@ -16,7 +14,7 @@ namespace WebApp.Mappers
                 entryModel.IdVehicle = entry.IdVehicle;
                 entryModel.IdVehicleType = entry.IdVehicleType;
                 entryModel.Id = entry.Id;
-                entryModel.entryTime = entry.EntryTime;
+                entryModel.EntryTime = entry.EntryTime;
             }
 
             return entryModel;
@@ -34,21 +32,5 @@ namespace WebApp.Mappers
 
             return dtoEntry;
         }
-
-        //public static IEnumerable<DTOEntry> convertEntityToDTO(List<DTOEntry> entry)
-        //{
-        //    IEnumerable<DTOEntry> entryEntity = new List<DTOEntry>();
-        //    if (entry?.Count > 0)
-        //    {
-        //        entryEntity = entry.Select(e => new DTOEntry
-        //        {
-        //            CC = e.CC,
-        //            IdVehicle = e.IdVehicle,
-        //            IdVehicleType = e.IdVehicleType
-        //        });
-        //    }
-
-        //    return entryEntity;
-        //}
     }
 }

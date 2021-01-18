@@ -173,10 +173,14 @@ namespace Application.Services.Tests
             var placaLastNumber = 5;
 
             DTOEntry entry = entryBuilder.Build();
+            EntryEntity entryEntity = new EntryEntityBuilder()
+                                    .WithCC("1000")
+                                    .Build();
 
             _cellService.Setup(cs => cs.ExistsQuotaByVehicleType(VehicleTypeEnum.motorcycle)).Returns(true);
-            _placaService.Setup(ps => ps.GetLastNumberOfIdVehicle((int)VehicleTypeEnum.motorcycle, entryBuilder.IdVehicle)).Returns(placaLastNumber.ToString());
+            _placaService.Setup(ps => ps.GetLastNumberOfIdVehicle(VehicleTypeEnum.motorcycle, entryBuilder.IdVehicle)).Returns(placaLastNumber.ToString());
             _placaService.Setup(es => es.HasPicoPlaca(day, placaLastNumber)).Returns(true);
+            entryRepository.Setup(er => er.Add(entryEntity)).Returns(entryEntity);
 
             var entryServiceClass = new EntryService(entryRepository.Object, _cellService.Object, _departureService.Object, _placaService.Object);
 

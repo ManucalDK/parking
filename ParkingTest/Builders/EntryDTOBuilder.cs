@@ -5,13 +5,13 @@ namespace ParkingTest.Builders
 {
     public class EntryDTOBuilder
     {
-        public int IdVehicleType { get; set; }
+        public VehicleTypeEnum IdVehicleType { get; set; }
         public string CC { get; set; }
         public string IdVehicle { get; set; }
 
         public EntryDTOBuilder()
         {
-            IdVehicleType = (int)VehicleTypeEnum.motorcycle;
+            IdVehicleType = VehicleTypeEnum.motorcycle;
             IdVehicle = "SFL55D";
         }
 
@@ -23,7 +23,7 @@ namespace ParkingTest.Builders
 
         public EntryDTOBuilder WithVehicleType(VehicleTypeEnum vehicleId)
         {
-            IdVehicleType = (int)vehicleId;
+            IdVehicleType = vehicleId;
             return this;
         }
 

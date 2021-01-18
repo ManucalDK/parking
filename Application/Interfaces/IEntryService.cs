@@ -1,4 +1,5 @@
-﻿using Application.DTOs;
+﻿using AppCore.Entities;
+using Application.DTOs;
 using System.Collections.Generic;
 
 namespace Application.Interfaces
@@ -9,8 +10,8 @@ namespace Application.Interfaces
 
         DTOEntry RegistryVehicle(DTOEntry entry);
 
-        int GetEntriesByVehicleType(int vehicleType);
-
         DTOEntry GetEntryById(string id);
+
+        EntryEntity GetLastEntryByVehicleId(string id);
     }
 }

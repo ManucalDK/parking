@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using AppCore.Enums;
 
 namespace Application.Interfaces
 {
@@ -8,6 +6,6 @@ namespace Application.Interfaces
     {
         bool HasPicoPlaca(int day, int vehicleLastNumberId);
 
-        string GetLastNumberOfIdVehicle(int vehicleTypeId, string vehicleId);
+        string GetLastNumberOfIdVehicle(VehicleTypeEnum vehicleTypeId, string vehicleId);
     }
 }

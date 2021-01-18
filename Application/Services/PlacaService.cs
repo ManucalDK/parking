@@ -34,15 +34,15 @@ namespace Application.Services
 
             return findResult != 0;
         }
-        public string GetLastNumberOfIdVehicle(int vehicleTypeId, string vehicleId)
+        public string GetLastNumberOfIdVehicle(VehicleTypeEnum vehicleTypeId, string vehicleId)
         {
             string lastNumber = string.Empty;
-            if (vehicleTypeId == (int)VehicleTypeEnum.car)
+            if (vehicleTypeId == VehicleTypeEnum.car)
             {
                 lastNumber = vehicleId.Last().ToString();
             }
 
-            if (vehicleTypeId == (int)VehicleTypeEnum.motorcycle)
+            if (vehicleTypeId == VehicleTypeEnum.motorcycle)
             {
                 var placa = _repository.List(r => r.Type == PlacaType.motorcycle).FirstOrDefault();
                 if (vehicleId.Length < placa.Length)

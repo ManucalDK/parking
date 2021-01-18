@@ -35,12 +35,6 @@ namespace Application.Services
             return EntryMapper.convertEntityToDTO(_entryRepository.List().ToList());
         }
 
-        public int GetEntriesByVehicleType(int vehicleType)
-        {
-            EntryEntity entry = _entryRepository.List(e => e.IdVehicle == "SFL55D").FirstOrDefault();
-            return 1;
-        }
-
         public DTOEntry RegistryVehicle(DTOEntry entry)
         {
             var lastEntryByIdVehicle = _entryRepository.List(e => e.IdVehicle == entry.IdVehicle).LastOrDefault();
@@ -72,16 +66,22 @@ namespace Application.Services
                 throw new EntryException("El vehículo no puede ser registrado, tiene pico y placa.");
             }
 
-            if ((entry.IdVehicleType == (int)VehicleTypeEnum.motorcycle) && string.IsNullOrEmpty(entry.CC))
+            if ((entry.IdVehicleType == VehicleTypeEnum.motorcycle) && string.IsNullOrEmpty(entry.CC))
             {
                 throw new EntryException("Falta la información del cilindraje de la motocicleta");
             }
 
             var entryEntity = _entryRepository.Add(EntryMapper.convertDTOToEntity(entry));
+            _cellService.DecreaseCell(entryEntity.IdVehicleType, 1);
 
             return EntryMapper.convertEntityToDTO(entryEntity);
         }
-    
-    
+
+        public EntryEntity GetLastEntryByVehicleId(string id)
+        {
+            return _entryRepository.List(er => er.IdVehicle == id).LastOrDefault();
+        }
+
+
     }
 }

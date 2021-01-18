@@ -35,7 +35,7 @@ namespace Application.Services.Tests
         {
             // Arrange (preparación, organizar)
             var PlacaService = new PlacaService(_placaRepository.Object);
-            int vehicleType = 2;
+            VehicleTypeEnum vehicleType = VehicleTypeEnum.motorcycle;
             string vehicleId = "SFL55";
             var placaEntity = new PlacaBuilder()
                                 .WithLastNumberFrom(2)
