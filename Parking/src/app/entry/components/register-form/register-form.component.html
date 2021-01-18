@@ -1,0 +1,46 @@
+<p *ngIf="generalError">
+  Error: {{generalError}}
+</p>
+<form [formGroup]="registerForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Registrar nueva entrada</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Placa" formControlName="placa">
+            <mat-error *ngIf="registerForm.controls['placa'].hasError('required')">
+              La placa es <strong>requerida</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Tipo de vehículo" formControlName="tipoVehiculo">
+              <mat-option *ngFor="let state of states" [value]="state.abbreviation">
+                {{ state.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="registerForm.controls['tipoVehiculo'].hasError('required')">
+              El tipo de vehículo es <strong>requerido</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row" *ngIf="isMotorcycle">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Cilindraje" formControlName="cilindraje">
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">Generar entrada</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

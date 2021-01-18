@@ -1,0 +1,35 @@
+<mat-toolbar color="primary">
+    <button mat-button routerLink="" routerLinkActive="active">
+        <mat-icon aria-hidden="false" aria-label="Example home icon">two_wheeler</mat-icon>  
+        <span>ADN Ceiba parking</span>
+    </button>
+
+    <span>|</span>
+
+    <button mat-button [matMenuTriggerFor]="entryMenu">Entradas</button>
+    <mat-menu #entryMenu="matMenu">
+        <button mat-menu-item>
+            <a routerLink="/entry/register" routerLinkActive="active">Nueva entrada</a>
+        </button>
+        <button mat-menu-item>
+            <a routerLink="/entry/list" routerLinkActive="active">Lista de entradas</a>
+        </button>
+    </mat-menu>
+
+    <span>|</span>
+
+    <button mat-button [matMenuTriggerFor]="departureMenu">Salidas</button>
+    <mat-menu #departureMenu="matMenu">
+        <button mat-menu-item>
+            <a routerLink="/departure/register" routerLinkActive="active">Nueva salida</a>
+        </button>
+        <button mat-menu-item>
+            <a routerLink="/departure/list" routerLinkActive="active">Lista de salidas</a>
+        </button>
+    </mat-menu>
+
+    <span class="spacer"></span>
+    <button mat-button>
+        <mat-icon aria-hidden="false" aria-label="Example home icon">settings</mat-icon>
+    </button>
+  </mat-toolbar>
