@@ -8,6 +8,7 @@ using Application.DTOs;
 using AppCore.Exceptions;
 using AppCore.Enums;
 using System.Collections.Generic;
+using Application.Mappers;
 
 namespace Application.Services.Tests
 {
@@ -69,15 +70,14 @@ namespace Application.Services.Tests
         }
 
         [TestMethod()]
-        public void RegisterMotorcycle_WithoutCellAvaliable_ShouldReturnException()
+        public void RegisterVehicle_WithoutCellAvaliable_ShouldReturnException()
         {
             // Arrange (preparación, organizar)
             var entryBuilder = new EntryDTOBuilder()
-                .WithVehicleId("SFL55D")
-                .WithVehicleType(VehicleTypeEnum.motorcycle)
-                .WithCC("1000");
+                .WithVehicleId("SFL555")
+                .WithVehicleType(VehicleTypeEnum.car);
 
-            _cellService.Setup(cs => cs.ExistsQuotaByVehicleType(VehicleTypeEnum.motorcycle)).Returns(false);
+            _cellService.Setup(cs => cs.ExistsQuotaByVehicleType(VehicleTypeEnum.car)).Returns(false);
 
 
             var entryService = new EntryService(entryRepository.Object, _cellService.Object, _departureService.Object, _placaService.Object);
@@ -98,7 +98,7 @@ namespace Application.Services.Tests
         }
 
         [TestMethod()]
-        public void RegisterMotorcycle_WithPendingDeparture_ShouldReturnException()
+        public void RegisterVehicle_WithPendingDeparture_ShouldReturnException()
         {
             // Arrange (preparación, organizar)
             var entryBuilder = new EntryDTOBuilder()
@@ -160,16 +160,42 @@ namespace Application.Services.Tests
                 Assert.AreEqual(e.Message, message);
             }
         }
-        
+
         [TestMethod()]
-        public void RegisterMotorcycle_WithPicoPlaca_ShouldReturnException()
+        public void RegisterCar_WithBadIdVehicleFormat_ShouldReturnException()
+        {
+            // Arrange (preparación, organizar)
+            var entryBuilder = new EntryDTOBuilder()
+                .WithVehicleId("SFL55A")
+                .WithVehicleType(VehicleTypeEnum.car);
+
+            DTOEntry entry = entryBuilder.Build();
+            _cellService.Setup(cs => cs.ExistsQuotaByVehicleType(VehicleTypeEnum.car)).Returns(true);
+            var entryService = new EntryService(entryRepository.Object, _cellService.Object, _departureService.Object, _placaService.Object);
+
+            // Act
+            try
+            {
+                entryService.RegistryVehicle(entry);
+            }
+            catch (Exception e)
+            {
+                var message = "Hubo un problema al leer la placa del vehículo. Verifique el tipo de vehículo e intente de nuevo";
+                // Assert (confirmacion)
+                Assert.IsInstanceOfType(e, typeof(EntryException));
+                Assert.AreEqual(e.Message, message);
+            }
+        }
+
+        [TestMethod()]
+        public void RegisterVehicle_WithPicoPlaca_ShouldReturnException()
         {
             // Arrange (preparación, organizar)
             var entryBuilder = new EntryDTOBuilder()
                 .WithVehicleId("SFL55D")
                 .WithVehicleType(VehicleTypeEnum.motorcycle)
                 .WithCC("1000");
-            var day = 3;
+            var day = 1;
             var placaLastNumber = 5;
 
             DTOEntry entry = entryBuilder.Build();
@@ -180,7 +206,6 @@ namespace Application.Services.Tests
             _cellService.Setup(cs => cs.ExistsQuotaByVehicleType(VehicleTypeEnum.motorcycle)).Returns(true);
             _placaService.Setup(ps => ps.GetLastNumberOfIdVehicle(VehicleTypeEnum.motorcycle, entryBuilder.IdVehicle)).Returns(placaLastNumber.ToString());
             _placaService.Setup(es => es.HasPicoPlaca(day, placaLastNumber)).Returns(true);
-            entryRepository.Setup(er => er.Add(entryEntity)).Returns(entryEntity);
 
             var entryServiceClass = new EntryService(entryRepository.Object, _cellService.Object, _departureService.Object, _placaService.Object);
 

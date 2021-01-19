@@ -30,6 +30,7 @@ namespace Application.Services.Tests
             // services
             _placaService = new Mock<IPlacaService>();
         }
+
         [TestMethod()]
         public void GetLastNumber_WithBadLength_ShouldReturnException()
         {

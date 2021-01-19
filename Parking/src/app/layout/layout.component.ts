@@ -13,13 +13,7 @@ export class LayoutComponent implements OnInit {
   constructor(private cellService: CellService ) { }
 
   ngOnInit(): void {
-    this.fetchProducts();
-  }
-
-  fetchProducts() {
-    this.cellService.getAllCells().subscribe((cells: Array<any>) => {
-      this.cells = cells;
-    });
+    
   }
 
 }

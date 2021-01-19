@@ -48,7 +48,7 @@ namespace Application.Services
                 }
             }
 
-            if (!_cellService.ExistsQuotaByVehicleType((VehicleTypeEnum)entry.IdVehicleType))
+            if (!_cellService.ExistsQuotaByVehicleType(entry.IdVehicleType))
             {
                 throw new CellException("No hay cupos disponibles");
             }

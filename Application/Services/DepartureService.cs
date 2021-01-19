@@ -58,6 +58,12 @@ namespace Application.Services
             }
 
             RateEntity rateEntity = _rateService.GetRateByVehicleType(lastEntry.IdVehicleType);
+
+            if(rateEntity == null)
+            {
+                throw new DepartureException("No existe una tarifa configuradad para el tipo de vehículo");
+            }
+
             var difference = departureTime - lastEntry.EntryTime;//Math.Ceiling((departureTime - lastEntry.EntryTime).TotalHours);
             int days = difference.Days;
             double hours = Math.Ceiling(difference.TotalHours);
