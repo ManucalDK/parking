@@ -34,8 +34,8 @@ namespace Infrastructure.Data
 
             List<CellEntity> cells = new List<CellEntity>
             {
-                new CellEntity { Id = Guid.NewGuid().ToString(), IdVehicleType = VehicleTypeEnum.car, NumCellAvaliable = 20 },
-                new CellEntity { Id = Guid.NewGuid().ToString(), IdVehicleType = VehicleTypeEnum.motorcycle, NumCellAvaliable = 10 }
+                new CellEntity { Id = Guid.NewGuid().ToString(), IdVehicleType = VehicleTypeEnum.car, NumCellAvaliable = 20, NumTotalCells = 20 },
+                new CellEntity { Id = Guid.NewGuid().ToString(), IdVehicleType = VehicleTypeEnum.motorcycle, NumCellAvaliable = 10, NumTotalCells = 10 }
             };
 
             modelBuilder.Entity<CellEntity>().HasData(cells.ToArray());

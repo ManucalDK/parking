@@ -8,7 +8,6 @@ using Application.DTOs;
 using AppCore.Exceptions;
 using AppCore.Enums;
 using System.Collections.Generic;
-using Application.Mappers;
 
 namespace Application.Services.Tests
 {
@@ -16,7 +15,6 @@ namespace Application.Services.Tests
     public class EntryServiceTests
     {
         public Mock<IRepository<EntryEntity>> entryRepository;
-        public Mock<IRepository<CellEntity>> cellRepository;
         public Mock<IRepository<DepartureEntity>> departureRepository;
 
         public Mock<IEntryService> entryService;
@@ -29,7 +27,6 @@ namespace Application.Services.Tests
         {
             // repositories
             entryRepository = new Mock<IRepository<EntryEntity>>();
-            cellRepository = new Mock<IRepository<CellEntity>>();
             departureRepository = new Mock<IRepository<DepartureEntity>>();
 
 

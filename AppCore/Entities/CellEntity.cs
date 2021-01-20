@@ -7,5 +7,7 @@ namespace AppCore.Entities
         public VehicleTypeEnum IdVehicleType { get; set; }
 
         public int NumCellAvaliable { get; set; }
+
+        public int NumTotalCells { get; set; }
     }
 }

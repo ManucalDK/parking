@@ -1,5 +1,6 @@
 ﻿using AppCore.Entities;
 using AppCore.Enums;
+using AppCore.Exceptions;
 using Application.Interfaces;
 using System.Linq;
 
@@ -24,6 +25,11 @@ namespace Application.Services
         {
             var cellEntity = _cellRepository.List(cell => cell.IdVehicleType == vehicleType).FirstOrDefault();
             cellEntity.NumCellAvaliable -= decrease;
+            if (cellEntity.NumCellAvaliable < 0)
+            {
+                throw new CellException("No hay más celdas disponibles");
+            }
+
             _cellRepository.Update(cellEntity);
             return cellEntity;
         }
@@ -31,7 +37,14 @@ namespace Application.Services
         public CellEntity IncreaseCell(VehicleTypeEnum vehicleType, int increase)
         {
             var cellEntity = _cellRepository.List(cell => cell.IdVehicleType == vehicleType).FirstOrDefault();
-            cellEntity.NumCellAvaliable += increase;
+            if(cellEntity.NumCellAvaliable < cellEntity.NumTotalCells)
+            {
+                cellEntity.NumCellAvaliable += increase;
+            } else
+            {
+                throw new CellException("No hay más celdas disponibles");
+            }
+            
             _cellRepository.Update(cellEntity);
             return cellEntity;
         }
