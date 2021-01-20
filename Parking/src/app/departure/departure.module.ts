@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { DepartureRoutingModule } from './departure-routing.module';
 import { NavComponent } from './components/nav/nav.component';
@@ -29,7 +30,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     MatRadioModule,
     MatCardModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule
   ]
 })
 export class DepartureModule { }

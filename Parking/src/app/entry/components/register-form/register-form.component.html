@@ -28,7 +28,7 @@
           </mat-form-field>
         </div>
       </div>
-      <div class="row" *ngIf="isMotorcycle">
+      <div class="row" *ngIf="getFieldValue('tipoVehiculo') == 2">
         <div class="col">
           <mat-form-field class="full-width">
             <input matInput placeholder="Cilindraje" formControlName="cilindraje">
@@ -37,7 +37,7 @@
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid">Generar entrada</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="registerForm.invalid || submitButtonDisable">Generar entrada</button>
     </mat-card-actions>
   </mat-card>
 </form>

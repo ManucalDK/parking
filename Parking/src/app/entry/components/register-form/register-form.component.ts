@@ -22,6 +22,7 @@ export class RegisterFormComponent {
   hasUnitNumber = false;
   isMotorcycle = true;
   generalError:string = "";
+  submitButtonDisable = false;
 
   states = [
     {name: 'Carro', abbreviation: 1},
@@ -37,7 +38,9 @@ export class RegisterFormComponent {
 
   async onSubmit() {
     this.generalError = "";
+    this.submitButtonDisable = true;
     const product = await this.registerEntryAsync();
+    this.submitButtonDisable = false;
     this.openDialog();
     if(!this.generalError){
       this.formGroupDirective.resetForm();  
@@ -52,7 +55,14 @@ export class RegisterFormComponent {
     };
     
     return this.registerService.createEntry(registerForm).toPromise().catch((reason: HttpErrorResponse) => {
-      this.generalError = reason.error;
+      console.log(reason)
+      this.generalError = reason?.error;
+      if(reason?.error?.errors) {
+        let errores = this.readErrors(reason.error.errors);
+        errores.forEach((error:string, index) =>{
+          this.generalError= error[index];
+        })
+      }
     });
   }
 
@@ -64,5 +74,25 @@ export class RegisterFormComponent {
         message: error?this.generalError:''
       }
     });
+  }
+
+  readErrors(errors:[]){
+    
+    let vArray:any[] = [];
+    const vErrors = errors;
+
+    if(vErrors){
+      for (const key in vErrors) {
+        if (vErrors.hasOwnProperty(key)) {
+          vArray.push(vErrors[key])
+        }
+      }
+    }
+
+    return vArray
+  }
+
+  getFieldValue(field:string){
+    return this.registerForm.get(field)?.value;
   }
 }

@@ -14,5 +14,11 @@ namespace WebApp.Models
         public DateTime DepartureTime{ get; set; }
 
         public double RateTotalValue{ get; set; }
+
+        public DateTime EntryTime { get; set; }
+
+        public int Days { get; set; }
+
+        public double Hours { get; set; }
     }
 }

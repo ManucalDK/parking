@@ -3,4 +3,7 @@ export interface listModel{
     departureTime: Date,
     idVehicle: string,
     rateValue : number
+    entryTime : Date,
+    days: number,
+    hours: number
 }

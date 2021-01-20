@@ -18,7 +18,7 @@
 
     <ng-container matColumnDef="idVehicleType">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo de vehículo</th>
-      <td mat-cell *matCellDef="let row">{{row.idVehicleType}}</td>
+      <td mat-cell *matCellDef="let row">{{getDescriptionOfVehicleType(row.idVehicleType)}}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

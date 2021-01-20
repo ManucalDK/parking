@@ -19,6 +19,7 @@ export class ListComponent implements AfterViewInit, OnInit {
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ["cc","idVehicle","entryTime","idVehicleType"];
+  
 
   constructor(private registerService: RegisterService) {}
 
@@ -36,6 +37,23 @@ export class ListComponent implements AfterViewInit, OnInit {
   async getListEntries(){
     const list:listModel[] = await this.registerService.getListEntries().toPromise();
     this.table.dataSource = list;
+  }
+
+  getDescriptionOfVehicleType(vehicleType:number){
+    let vehicleTypeDescription = "";
+    switch (vehicleType) {
+      case 1:
+        vehicleTypeDescription = "Carro"
+        break;
+      case 2:
+        vehicleTypeDescription = "Motocicleta"
+        break;
+      default:
+        vehicleTypeDescription = "Automovil"
+        break;
+    }
+
+    return vehicleTypeDescription;
   }
 
 }

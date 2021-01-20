@@ -50,9 +50,9 @@ namespace Application.Services
         {
             double totalCharge;
             var departureTime = DateTime.Now;
-            EntryEntity lastEntry = _entryRepository.List(er => er.IdVehicle == departure.IdVehicle).LastOrDefault();
+            EntryEntity lastEntry = GetInfoEntryByVehicleId(departure.IdVehicle);
 
-            if(lastEntry == null)
+            if (lastEntry == null)
             {
                 throw new DepartureException("No existe un registro de entrada para el vehículo");
             }
@@ -100,6 +100,11 @@ namespace Application.Services
             var entryEntity = _departureRepository.Add(DepartureMapper.convertDTOToEntity(departure, lastEntry, totalCharge));
             _cellService.IncreaseCell(lastEntry.IdVehicleType, 1);
             return DepartureMapper.convertEntityToDTO(entryEntity);
+        }
+
+        private EntryEntity GetInfoEntryByVehicleId(string idVehicle)
+        {
+            return  _entryRepository.List(er => er.IdVehicle == idVehicle).LastOrDefault();
         }
 
 

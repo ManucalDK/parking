@@ -14,6 +14,9 @@ namespace WebApp.Mappers
                 departureModel.Id = dtoDeparture.Id;
                 departureModel.DepartureTime = dtoDeparture.DepartureTime;
                 departureModel.RateTotalValue = dtoDeparture.RateValue;
+                departureModel.EntryTime = dtoDeparture.EntryTime;
+                departureModel.Days = departureModel.Days;
+                departureModel.Hours = departureModel.Hours;
             }
 
             return departureModel;
