@@ -9,6 +9,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 //components
 import { RegisterFormComponent } from './components/register-form/register-form.component';
@@ -33,7 +34,8 @@ import { MatSortModule } from '@angular/material/sort';
     SharedModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule
   ]
 })
 export class EntryModule { }

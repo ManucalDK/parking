@@ -90,7 +90,7 @@ namespace ParkingTest.Unit.Services
                                             .Build();
             var EntryEntity = new List<EntryEntity>();
             EntryEntity.Add(new EntryEntity() { IdVehicle = departureDTOBuilder.IdVehicle, IdVehicleType = IdVehicleType });
-            
+
             _entryRepository.Setup(er => er.List(e => e.IdVehicle == departureDTOBuilder.IdVehicle)).Returns(EntryEntity);
             _rateService.Setup(rs => rs.GetRateByVehicleType(IdVehicleType)).Returns(new RateEntity());
 

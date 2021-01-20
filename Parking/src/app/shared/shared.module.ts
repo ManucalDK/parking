@@ -7,12 +7,14 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
+import { DialogMessageComponent } from './components/dialog-message/dialog-message.component';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
     FooterComponent,
+    DialogMessageComponent,
   ],
   exports: [
     HeaderComponent,
