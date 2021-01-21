@@ -61,7 +61,7 @@ namespace Application.Services
 
             if(rateEntity == null)
             {
-                throw new DepartureException("No existe una tarifa configuradad para el tipo de vehículo");
+                throw new DepartureException("No existe una tarifa configurada para el tipo de vehículo");
             }
 
             var difference = departureTime - lastEntry.EntryTime;//Math.Ceiling((departureTime - lastEntry.EntryTime).TotalHours);

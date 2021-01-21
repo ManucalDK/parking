@@ -72,6 +72,12 @@ namespace Application.Services
             }
 
             var entryEntity = _entryRepository.Add(EntryMapper.convertDTOToEntity(entry));
+
+            if(entryEntity == null)
+            {
+                throw new EntryException("Ocurrio un problema al guardar el registro");
+            }
+
             _cellService.DecreaseCell(entryEntity.IdVehicleType, 1);
 
             return EntryMapper.convertEntityToDTO(entryEntity);

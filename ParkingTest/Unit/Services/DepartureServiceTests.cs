@@ -19,6 +19,7 @@ namespace ParkingTest.Unit.Services
     {
         public Mock<IRepository<DepartureEntity>> _departureRepository;
         public Mock<IRepository<EntryEntity>> _entryRepository;
+        public Mock<IRepository<RateEntity>> _rateRepository;
         public Mock<IDepartureService> _departureService;
         public Mock<IRateService> _rateService;
         public Mock<ICellService> _cellService;
@@ -29,6 +30,7 @@ namespace ParkingTest.Unit.Services
             // repositories
             _departureRepository = new Mock<IRepository<DepartureEntity>>();
             _entryRepository = new Mock<IRepository<EntryEntity>>();
+            _rateRepository = new Mock<IRepository<RateEntity>>();
 
             // services
             _departureService = new Mock<IDepartureService>();
@@ -55,14 +57,16 @@ namespace ParkingTest.Unit.Services
         public void RegisterDeparture_WithoutRateConfiguration_ShouldReturnAnException()
         {
             // Arrange (preparación)
-            var response = "No existe una tarifa configuradad para el tipo de vehículo";
+            var response = "No existe una tarifa configurada para el tipo de vehículo";
+            var idVehicle = "AAA111";
             DTODeparture departureDTOBuilder = new DepartureDTOBuilder()
-                                            .WithIdVehicle("AAA111")
+                                            .WithIdVehicle(idVehicle)
                                             .Build();
             var EntryEntity = new List<EntryEntity>();
             EntryEntity.Add(new EntryEntity() { IdVehicle = departureDTOBuilder.IdVehicle });
 
-            _entryRepository.Setup(er => er.List(e => e.IdVehicle == departureDTOBuilder.IdVehicle)).Returns(EntryEntity);
+            _entryRepository.Setup(repo => repo.List(er => er.IdVehicle == idVehicle)).Returns(EntryEntity);
+            //_rateService.Setup(service => service.GetRateByVehicleType(VehicleTypeEnum.car)).Returns(new RateEntity());
 
             var entryService = new DepartureService(_departureRepository.Object, _entryRepository.Object, _rateService.Object, _cellService.Object);
 
@@ -85,13 +89,14 @@ namespace ParkingTest.Unit.Services
             // Arrange (preparación)
             var response = "No fue posible determinar el cilindraje del vehículo";
             var IdVehicleType = VehicleTypeEnum.motorcycle;
-            DTODeparture departureDTOBuilder = new DepartureDTOBuilder()
-                                            .WithIdVehicle("AAABBB")
+            var idVehicle = "AAABBB";
+            DTODeparture departure = new DepartureDTOBuilder()
+                                            .WithIdVehicle(idVehicle)
                                             .Build();
             var EntryEntity = new List<EntryEntity>();
-            EntryEntity.Add(new EntryEntity() { IdVehicle = departureDTOBuilder.IdVehicle, IdVehicleType = IdVehicleType });
+            EntryEntity.Add(new EntryEntity() { IdVehicle = departure.IdVehicle, IdVehicleType = IdVehicleType });
 
-            _entryRepository.Setup(er => er.List(e => e.IdVehicle == departureDTOBuilder.IdVehicle)).Returns(EntryEntity);
+            _entryRepository.Setup(repo => repo.List(er => er.IdVehicle == idVehicle)).Returns(EntryEntity);
             _rateService.Setup(rs => rs.GetRateByVehicleType(IdVehicleType)).Returns(new RateEntity());
 
             var entryService = new DepartureService(_departureRepository.Object, _entryRepository.Object, _rateService.Object, _cellService.Object);
@@ -99,7 +104,7 @@ namespace ParkingTest.Unit.Services
             // Act
             try
             {
-                var result = entryService.RegistryDeparture(departureDTOBuilder);
+                var result = entryService.RegistryDeparture(departure);
             }
             catch (Exception e)
             {

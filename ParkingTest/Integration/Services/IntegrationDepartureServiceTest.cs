@@ -64,6 +64,7 @@ namespace ParkingTest.Integration.Services
             });
 
             // Act
+            cellService.DecreaseCell(AppCore.Enums.VehicleTypeEnum.car, 1);
             var response = departureService.RegistryDeparture(entryDTOBuilder);
 
             // Assert
@@ -86,6 +87,7 @@ namespace ParkingTest.Integration.Services
                 CC = "650"
             });
 
+            cellService.DecreaseCell(AppCore.Enums.VehicleTypeEnum.motorcycle, 1);
             // Act
             var response = departureService.RegistryDeparture(entryDTOBuilder);
 
