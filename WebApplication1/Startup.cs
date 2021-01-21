@@ -34,7 +34,7 @@ namespace WebApplication1
             });
             services.AddControllers();
             //services.AddDbContext<ParkingDbContext>(opt => opt.UseInMemoryDatabase("ParkingMemoryDb"));
-            IoC.AddDependency(services);
+            services.AddDependency();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -9,7 +9,7 @@ namespace Infrastructure
 {
     public static class IoC
     {
-        public static IServiceCollection AddDependency(IServiceCollection services)
+        public static IServiceCollection AddDependency(this IServiceCollection services)
         {
             services.AddDbContext<ParkingDbContext>(opt => opt.UseInMemoryDatabase("ParkingMemoryDb"));
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
