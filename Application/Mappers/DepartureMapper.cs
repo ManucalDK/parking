@@ -3,13 +3,12 @@ using Application.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Application.Mappers
 {
     public static class DepartureMapper
     {
-        public static DepartureEntity convertDTOToEntity(DTODeparture dtoDeparture, EntryEntity entryEntity, double rateTotal)
+        public static DepartureEntity ConvertDTOToEntity(DTODeparture dtoDeparture, EntryEntity entryEntity, double rateTotal)
         {
             DepartureEntity departureEntity = new DepartureEntity();
             if (dtoDeparture != null)
@@ -24,7 +23,7 @@ namespace Application.Mappers
             return departureEntity;
         }
 
-        public static DTODeparture convertEntityToDTO(DepartureEntity departureEntity)
+        public static DTODeparture ConvertEntityToDTO(DepartureEntity departureEntity)
         {
             DTODeparture dtoDeparture = new DTODeparture();
             if (departureEntity != null)
@@ -38,7 +37,7 @@ namespace Application.Mappers
             return dtoDeparture;
         }
 
-        public static IEnumerable<DTODeparture> convertEntityToDTO(List<DepartureEntity> departureEntity)
+        public static IEnumerable<DTODeparture> ConvertEntityToDTO(List<DepartureEntity> departureEntity)
         {
             IEnumerable<DTODeparture> dtoDeparture = new List<DTODeparture>();
             if (departureEntity?.Count > 0)

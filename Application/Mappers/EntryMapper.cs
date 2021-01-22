@@ -8,7 +8,7 @@ namespace Application.Mappers
 {
     public static class EntryMapper
     {
-        public static EntryEntity convertDTOToEntity(DTOEntry entry)
+        public static EntryEntity ConvertDTOToEntity(DTOEntry entry)
         {
             EntryEntity entryEntity = new EntryEntity();
             if (entry!= null)
@@ -23,7 +23,7 @@ namespace Application.Mappers
             return entryEntity;
         }
 
-        public static DTOEntry convertEntityToDTO(EntryEntity entry)
+        public static DTOEntry ConvertEntityToDTO(EntryEntity entry)
         {
             DTOEntry entryEntity = new DTOEntry();
             if (entry != null)
@@ -38,7 +38,7 @@ namespace Application.Mappers
             return entryEntity;
         }
 
-        public static IEnumerable<DTOEntry> convertEntityToDTO(List<EntryEntity> entry)
+        public static IEnumerable<DTOEntry> ConvertEntityToDTO(List<EntryEntity> entry)
         {
             IEnumerable<DTOEntry> entryEntity = new List<DTOEntry>();
             if (entry?.Count > 0)

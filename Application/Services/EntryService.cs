@@ -27,12 +27,12 @@ namespace Application.Services
 
         public DTOEntry GetEntryById(string id)
         {
-            return EntryMapper.convertEntityToDTO(_entryRepository.GetById(id));
+            return EntryMapper.ConvertEntityToDTO(_entryRepository.GetById(id));
         }
 
         public IEnumerable<DTOEntry> GetEntries()
         {
-            return EntryMapper.convertEntityToDTO(_entryRepository.List().ToList());
+            return EntryMapper.ConvertEntityToDTO(_entryRepository.List().ToList());
         }
 
         public DTOEntry RegistryVehicle(DTOEntry entry)
@@ -71,7 +71,7 @@ namespace Application.Services
                 throw new EntryException("Falta la información del cilindraje de la motocicleta");
             }
 
-            var entryEntity = _entryRepository.Add(EntryMapper.convertDTOToEntity(entry));
+            var entryEntity = _entryRepository.Add(EntryMapper.ConvertDTOToEntity(entry));
 
             if(entryEntity == null)
             {
@@ -80,7 +80,7 @@ namespace Application.Services
 
             _cellService.DecreaseCell(entryEntity.IdVehicleType, 1);
 
-            return EntryMapper.convertEntityToDTO(entryEntity);
+            return EntryMapper.ConvertEntityToDTO(entryEntity);
         }
 
         public EntryEntity GetLastEntryByVehicleId(string id)

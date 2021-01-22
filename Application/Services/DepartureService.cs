@@ -27,12 +27,12 @@ namespace Application.Services
 
         public IEnumerable<DTODeparture> GetDepartures()
         {
-            return DepartureMapper.convertEntityToDTO(_departureRepository.List().ToList());
+            return DepartureMapper.ConvertEntityToDTO(_departureRepository.List().ToList());
         }
 
         public DTODeparture GetEntryById(string id)
         {
-            return DepartureMapper.convertEntityToDTO(_departureRepository.GetById(id));
+            return DepartureMapper.ConvertEntityToDTO(_departureRepository.GetById(id));
         }
 
 
@@ -97,9 +97,9 @@ namespace Application.Services
                 }
             }
 
-            var entryEntity = _departureRepository.Add(DepartureMapper.convertDTOToEntity(departure, lastEntry, totalCharge));
+            var entryEntity = _departureRepository.Add(DepartureMapper.ConvertDTOToEntity(departure, lastEntry, totalCharge));
             _cellService.IncreaseCell(lastEntry.IdVehicleType, 1);
-            return DepartureMapper.convertEntityToDTO(entryEntity);
+            return DepartureMapper.ConvertEntityToDTO(entryEntity);
         }
 
         private EntryEntity GetInfoEntryByVehicleId(string idVehicle)
