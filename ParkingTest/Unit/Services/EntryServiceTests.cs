@@ -9,6 +9,7 @@ using AppCore.Exceptions;
 using AppCore.Enums;
 using System.Collections.Generic;
 using Application.Mappers;
+using System.Linq;
 
 namespace Application.Services.Tests
 {
@@ -185,42 +186,6 @@ namespace Application.Services.Tests
             }
         }
 
-        //[TestMethod()]
-        //public void RegisterVehicle_WithPicoPlaca_ShouldReturnException()
-        //{
-        //    // Arrange (preparación, organizar)
-        //    var entryBuilder = new EntryDTOBuilder()
-        //        .WithVehicleId("SFL55D")
-        //        .WithVehicleType(VehicleTypeEnum.motorcycle)
-        //        .WithCC("1000");
-        //    var day = 1;
-        //    var placaLastNumber = 5;
-
-        //    DTOEntry entry = entryBuilder.Build();
-        //    EntryEntity entryEntity = new EntryEntityBuilder()
-        //                            .WithCC("1000")
-        //                            .Build();
-
-        //    _cellService.Setup(cs => cs.ExistsQuotaByVehicleType(VehicleTypeEnum.motorcycle)).Returns(true);
-        //    _placaService.Setup(ps => ps.GetLastNumberOfIdVehicle(VehicleTypeEnum.motorcycle, entryBuilder.IdVehicle)).Returns(placaLastNumber.ToString());
-        //    _placaService.Setup(es => es.HasPicoPlaca(day, placaLastNumber)).Returns(true);
-
-        //    var entryServiceClass = new EntryService(entryRepository.Object, _cellService.Object, _departureService.Object, _placaService.Object);
-
-        //    // Act
-        //    try
-        //    {
-        //        entryServiceClass.RegistryVehicle(entry);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        var message = "El vehículo no puede ser registrado, tiene pico y placa.";
-        //        // Assert (confirmacion)
-        //        Assert.IsInstanceOfType(e, typeof(EntryException));
-        //        Assert.AreEqual(e.Message, message);
-        //    }
-        //}
-
         [TestMethod()]
         public void GetLastEntryByVehicleId_ShouldReturnAnEntityList()
         {
@@ -301,28 +266,65 @@ namespace Application.Services.Tests
             Assert.IsTrue(result.GetType() == typeof(DTOEntry));
         }
 
-        //[TestMethod()]
-        //public void GetEntryByBadId_ShouldReturnNull()
-        //{
-        //    // Arrange
-        //    var entryEntity = new EntryEntity
-        //    {
-        //        CC = null,
-        //        EntryTime = DateTime.Now,
-        //        Id = Guid.NewGuid().ToString(),
-        //        IdVehicle = "SFL55D",
-        //        IdVehicleType = VehicleTypeEnum.car
-        //    };
-        //    var id = "aa";
-        //    entryRepository.Setup(er => er.GetById(id)).Returns(entryEntity);
+        [TestMethod()]
+        public void GetEntryByBadId_ShouldReturnAnEntityWithValuesInNull()
+        {
+            // Arrange
+            var entryEntity = new EntryEntity
+            {
+                CC = null,
+                EntryTime = DateTime.Now,
+                Id = Guid.NewGuid().ToString(),
+                IdVehicle = "SFL55D",
+                IdVehicleType = VehicleTypeEnum.car
+            };
+            var id = "aa";
+            entryRepository.Setup(er => er.GetById(entryEntity.Id)).Returns(entryEntity);
 
-        //    var entryServiceClass = new EntryService(entryRepository.Object, _cellService.Object, _departureService.Object, _placaService.Object);
+            var entryServiceClass = new EntryService(entryRepository.Object, _cellService.Object, _departureService.Object, _placaService.Object);
 
-        //    // Act
-        //    var result = entryServiceClass.GetEntryById(id);
+            // Act
+            var result = entryServiceClass.GetEntryById(id);
 
-        //    // Assert
-        //    Assert.IsNull(result);
-        //}
+            // Assert
+            Assert.IsNull(result.Id);
+        }
+
+        [TestMethod()]
+        public void GetEntries_ShouldNotReturnNullList()
+        {
+            // Arrange
+            entryRepository.Setup(er => er.List()).Returns(new List<EntryEntity> { 
+                new EntryEntity{ 
+                    EntryTime = DateTime.Now,
+                    Id = Guid.NewGuid().ToString(),
+                    IdVehicle =  "SFL555",
+                    IdVehicleType = VehicleTypeEnum.car
+                }
+            });
+
+            var entryServiceClass = new EntryService(entryRepository.Object, _cellService.Object, _departureService.Object, _placaService.Object);
+
+            // Act
+            var result = entryServiceClass.GetEntries();
+
+            // Assert
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod()]
+        public void GetEntries_ShouldReturnListWith0Items()
+        {
+            // Arrange
+            entryRepository.Setup(er => er.List()).Returns(new List<EntryEntity>());
+
+            var entryServiceClass = new EntryService(entryRepository.Object, _cellService.Object, _departureService.Object, _placaService.Object);
+
+            // Act
+            IEnumerable<DTOEntry> result = entryServiceClass.GetEntries();
+
+            // Assert
+            Assert.IsTrue(result.Count() <= 0);
+        }
     }
 }
