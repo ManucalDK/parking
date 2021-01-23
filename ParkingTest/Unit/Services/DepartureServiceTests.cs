@@ -44,7 +44,7 @@ namespace ParkingTest.Unit.Services
         public void RegisterDeparture_WithoutEntry_ShouldReturnAnException()
         {
             // Arrange (preparación)
-            DTODeparture departureDTOBuilder = new DepartureDTOBuilder()
+            DtoDeparture departureDTOBuilder = new DepartureDTOBuilder()
                                             .WithIdVehicle("AAA111")
                                             .Build();
 
@@ -60,7 +60,7 @@ namespace ParkingTest.Unit.Services
             // Arrange (preparación)
             var response = "No existe una tarifa configurada para el tipo de vehículo";
             var idVehicle = "AAA111";
-            DTODeparture departureDTOBuilder = new DepartureDTOBuilder()
+            DtoDeparture departureDTOBuilder = new DepartureDTOBuilder()
                                             .WithIdVehicle(idVehicle)
                                             .Build();
             var EntryEntity = new List<EntryEntity>();
@@ -91,7 +91,7 @@ namespace ParkingTest.Unit.Services
             var response = "No fue posible determinar el cilindraje del vehículo";
             var IdVehicleType = VehicleTypeEnum.motorcycle;
             var idVehicle = "AAABBB";
-            DTODeparture departure = new DepartureDTOBuilder()
+            DtoDeparture departure = new DepartureDTOBuilder()
                                             .WithIdVehicle(idVehicle)
                                             .Build();
             var EntryEntity = new List<EntryEntity>();
@@ -164,7 +164,7 @@ namespace ParkingTest.Unit.Services
             var entryService = new DepartureService(_departureRepository.Object, _entryRepository.Object, _rateService.Object, _cellService.Object);
 
             // Act
-            DTODeparture result =  entryService.GetEntryById(id: departureEntity.Id);
+            DtoDeparture result =  entryService.GetEntryById(id: departureEntity.Id);
 
             // Assert
             Assert.IsNotNull(result);
@@ -181,7 +181,7 @@ namespace ParkingTest.Unit.Services
             var entryService = new DepartureService(_departureRepository.Object, _entryRepository.Object, _rateService.Object, _cellService.Object);
 
             // Act
-            DTODeparture result = entryService.GetEntryById(id: newId);
+            DtoDeparture result = entryService.GetEntryById(id: newId);
 
             // Assert
             Assert.IsNull(result.Id);

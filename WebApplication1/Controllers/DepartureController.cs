@@ -22,7 +22,7 @@ namespace WebApp.Controllers
 
         //GET: api/Departure
         [HttpGet]
-        public ActionResult<IEnumerable<DTODeparture>> GetDepartures()
+        public ActionResult<IEnumerable<DtoDeparture>> GetDepartures()
         {
             var cells = _departureService.GetDepartures();
             return Ok(cells);
@@ -30,7 +30,7 @@ namespace WebApp.Controllers
 
         //GET: api/Departure/xx
         [HttpGet("{id}")]
-        public ActionResult<DTODeparture> GetDeparture(string id)
+        public ActionResult<DtoDeparture> GetDeparture(string id)
         {
             var cell = DepartureMapper.convertDTOToModel(_departureService.GetEntryById(id));
 
@@ -44,9 +44,9 @@ namespace WebApp.Controllers
 
         //POST: api/Departure
         [HttpPost]
-        public ActionResult<IEnumerable<DTODeparture>> SaveDeparture(DepartureModel departure)
+        public ActionResult<IEnumerable<DtoDeparture>> SaveDeparture(DepartureModel departure)
         {
-            DTODeparture added = new DTODeparture();
+            DtoDeparture added = new DtoDeparture();
             if (ModelState.IsValid)
             {
                 try

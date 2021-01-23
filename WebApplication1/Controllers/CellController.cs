@@ -16,7 +16,7 @@ namespace WebApp.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<DTOCell>> GetCells()
+        public ActionResult<IEnumerable<DtoCell>> GetCells()
         {
             return Ok();
         }

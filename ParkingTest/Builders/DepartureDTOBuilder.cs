@@ -44,9 +44,9 @@ namespace ParkingTest.Builders
             return this;
         }
 
-        public DTODeparture Build()
+        public DtoDeparture Build()
         {
-            return new DTODeparture()
+            return new DtoDeparture()
             {
                 Id = Id,
                 IdVehicle = IdVehicle,

@@ -25,17 +25,17 @@ namespace Application.Services
             _placaService = placaService;
         }
 
-        public DTOEntry GetEntryById(string id)
+        public DtoEntry GetEntryById(string id)
         {
             return EntryMapper.ConvertEntityToDTO(_entryRepository.GetById(id));
         }
 
-        public IEnumerable<DTOEntry> GetEntries()
+        public IEnumerable<DtoEntry> GetEntries()
         {
             return EntryMapper.ConvertEntityToDTO(_entryRepository.List().ToList());
         }
 
-        public DTOEntry RegistryVehicle(DTOEntry entry)
+        public DtoEntry RegistryVehicle(DtoEntry entry)
         {
             var lastEntryByIdVehicle = _entryRepository.List(e => e.IdVehicle == entry.IdVehicle).LastOrDefault();
 
@@ -61,7 +61,7 @@ namespace Application.Services
                 throw new EntryException("Hubo un problema al leer la placa del vehículo. Verifique el tipo de vehículo e intente de nuevo");
             }
 
-            if (_placaService.HasPicoPlaca((int)DateTime.Now.DayOfWeek, numberResult))
+            if (_placaService.HasPicoPlaca(entry.IdVehicleType, (int)DateTime.Now.DayOfWeek, numberResult))
             {
                 throw new EntryException("El vehículo no puede ser registrado, tiene pico y placa.");
             }

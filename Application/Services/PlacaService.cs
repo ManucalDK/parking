@@ -1,6 +1,5 @@
 ﻿using AppCore.Enums;
 using Application.Interfaces;
-using System.Collections.Generic;
 using System.Linq;
 using AppCore.Exceptions;
 using AppCore.Entities;
@@ -10,30 +9,23 @@ namespace Application.Services
     public class PlacaService : IPlacaService
     {
         IRepository<PlacaEntity> _repository;
+        IRepository<PicoPlacaDigits> _picoPlacarepository;
+        
 
-        public PlacaService(IRepository<PlacaEntity> repository)
+
+        public PlacaService(IRepository<PlacaEntity> repository, IRepository<PicoPlacaDigits> picoPlacarepository)
         {
             _repository = repository;
+            _picoPlacarepository = picoPlacarepository;
         }
 
-        public bool HasPicoPlaca(int day, int vehicleLastNumberId)
+        public bool HasPicoPlaca(VehicleTypeEnum vehicleTypeId, int day, int vehicleLastNumberId)
         {
-            var picoPlacaDays = new Dictionary<int, int[]>
-            {
-                { 1, new int[] { 9, 0, 1 } },
-                { 2, new int[] { 2, 3 } },
-                { 3, new int[] { 4, 5 } },
-                { 4, new int[] { 5, 6, 7 } },
-                { 5, new int[] { 8, 0 } }
-            };
-
-            var findResult = picoPlacaDays.Where(d => d.Key == day &&
-                                                        d.Value.Where(p => p == vehicleLastNumberId).Select(p => p).FirstOrDefault() != 0)
-                                          .Select(p => p.Key)
-                                          .FirstOrDefault();
-
-            return findResult != 0;
+            var result = _repository.List(repo => repo.Type == vehicleTypeId).FirstOrDefault();
+            var picoPlacaResult = _picoPlacarepository.List(repo => repo.PlacaEntityID == result.Id && repo.Day == day && repo.Digit == vehicleLastNumberId);
+            return picoPlacaResult?.Count() > 0;
         }
+
         public string GetLastNumberOfIdVehicle(VehicleTypeEnum vehicleTypeId, string vehicleId)
         {
             string lastNumber = string.Empty;
@@ -44,7 +36,7 @@ namespace Application.Services
 
             if (vehicleTypeId == VehicleTypeEnum.motorcycle)
             {
-                var placa = _repository.List(r => r.Type == PlacaType.motorcycle).FirstOrDefault();
+                var placa = _repository.List(r => r.Type == VehicleTypeEnum.motorcycle).FirstOrDefault();
                 if (vehicleId.Length < placa.Length)
                 {
                     throw new PlacaException($"La placa del vehículo posee un problema en el formato. La longitud debe ser de {placa.Length}");

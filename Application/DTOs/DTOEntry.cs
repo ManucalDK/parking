@@ -3,7 +3,7 @@ using System;
 
 namespace Application.DTOs
 {
-    public class DTOEntry : BaseDTO
+    public class DtoEntry : BaseDto
     {
         public VehicleTypeEnum IdVehicleType { get; set; }
 

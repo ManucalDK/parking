@@ -5,7 +5,7 @@ namespace WebApp.Mappers
 {
     public static class DepartureMapper
     {
-        public static DepartureModel convertDTOToModel(DTODeparture dtoDeparture)
+        public static DepartureModel convertDTOToModel(DtoDeparture dtoDeparture)
         {
             DepartureModel departureModel = new DepartureModel();
             if (dtoDeparture != null)
@@ -22,9 +22,9 @@ namespace WebApp.Mappers
             return departureModel;
         }
 
-        public static DTODeparture convertModelToDTO(DepartureModel departureModel)
+        public static DtoDeparture convertModelToDTO(DepartureModel departureModel)
         {
-            DTODeparture dtoDeparture = new DTODeparture();
+            DtoDeparture dtoDeparture = new DtoDeparture();
             if (departureModel != null)
             {
                 dtoDeparture.IdVehicle = departureModel.IdVehicle;

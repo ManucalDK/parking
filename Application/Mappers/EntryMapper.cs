@@ -8,7 +8,7 @@ namespace Application.Mappers
 {
     public static class EntryMapper
     {
-        public static EntryEntity ConvertDTOToEntity(DTOEntry entry)
+        public static EntryEntity ConvertDTOToEntity(DtoEntry entry)
         {
             EntryEntity entryEntity = new EntryEntity();
             if (entry!= null)
@@ -23,9 +23,9 @@ namespace Application.Mappers
             return entryEntity;
         }
 
-        public static DTOEntry ConvertEntityToDTO(EntryEntity entry)
+        public static DtoEntry ConvertEntityToDTO(EntryEntity entry)
         {
-            DTOEntry entryEntity = new DTOEntry();
+            DtoEntry entryEntity = new DtoEntry();
             if (entry != null)
             {
                 entryEntity.CC = entry.CC;
@@ -38,12 +38,12 @@ namespace Application.Mappers
             return entryEntity;
         }
 
-        public static IEnumerable<DTOEntry> ConvertEntityToDTO(List<EntryEntity> entry)
+        public static IEnumerable<DtoEntry> ConvertEntityToDTO(List<EntryEntity> entry)
         {
-            IEnumerable<DTOEntry> entryEntity = new List<DTOEntry>();
+            IEnumerable<DtoEntry> entryEntity = new List<DtoEntry>();
             if (entry?.Count > 0)
             {
-                entryEntity = entry.Select(e => new DTOEntry {
+                entryEntity = entry.Select(e => new DtoEntry {
                     CC = e.CC,
                     IdVehicle = e.IdVehicle, 
                     IdVehicleType = e.IdVehicleType,

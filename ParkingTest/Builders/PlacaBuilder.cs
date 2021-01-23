@@ -1,8 +1,6 @@
 ﻿using AppCore.Entities;
 using AppCore.Enums;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ParkingTest.Builders
 {
@@ -10,14 +8,14 @@ namespace ParkingTest.Builders
     {
         public string Id { get; set; }
         public int Length { get; set; }
-        public PlacaType Type { get; set; }
+        public VehicleTypeEnum Type { get; set; }
         public int LastNumberFrom { get; set; }
 
         public PlacaBuilder()
         {
             Id = Guid.NewGuid().ToString();
             Length = 6;
-            Type = PlacaType.car;
+            Type = VehicleTypeEnum.car;
         }
 
         public PlacaBuilder WithId(string id)
@@ -31,7 +29,7 @@ namespace ParkingTest.Builders
             Length = length;
             return this;
         }
-        public PlacaBuilder WithType(PlacaType type)
+        public PlacaBuilder WithType(VehicleTypeEnum type)
         {
             Type = type;
             return this;

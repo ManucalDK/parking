@@ -24,6 +24,7 @@ namespace ParkingTest.Integration.Services
         private IRepository<DepartureEntity> departureRepository;
         private IRepository<RateEntity> rateRepository;
         private IRepository<PlacaEntity> placaRepository;
+        private IRepository<PicoPlacaDigits> picoPlacarepository;
 
         EntryService entryService;
         CellService cellService;
@@ -42,10 +43,11 @@ namespace ParkingTest.Integration.Services
             departureRepository = new Repository<DepartureEntity>(contexto);
             rateRepository = new Repository<RateEntity>(contexto);
             placaRepository = new Repository<PlacaEntity>(contexto);
+            picoPlacarepository = new Repository<PicoPlacaDigits>(contexto);
 
             cellService = new CellService(cellRepository);
             rateService = new RateService(rateRepository);
-            placaService = new PlacaService(placaRepository);
+            placaService = new PlacaService(placaRepository, picoPlacarepository);
 
             departureService = new DepartureService(departureRepository, entryRepository, rateService, cellService);
             entryService = new EntryService(entryRepository, cellService, departureService, placaService);
@@ -56,7 +58,7 @@ namespace ParkingTest.Integration.Services
         public void EntryVehicle_WithoutCellAvaliable_ShouldReturnAnException()
         {
             // Arrange
-            DTOEntry entryDTOBuilder = new EntryDTOBuilder().WithVehicleType(AppCore.Enums.VehicleTypeEnum.car).WithVehicleId("AAA111").Build();
+            DtoEntry entryDTOBuilder = new EntryDTOBuilder().WithVehicleType(AppCore.Enums.VehicleTypeEnum.car).WithVehicleId("AAA111").Build();
             var response = "No hay cupos disponibles";
 
 

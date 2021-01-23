@@ -5,7 +5,7 @@ namespace WebApp.Mappers
 {
     public static class EntryMapper
     {
-        public static EntryModel convertDTOToModel(DTOEntry entry)
+        public static EntryModel convertDTOToModel(DtoEntry entry)
         {
             EntryModel entryModel = new EntryModel();
             if (entry != null)
@@ -20,9 +20,9 @@ namespace WebApp.Mappers
             return entryModel;
         }
 
-        public static DTOEntry convertModelToDTO(EntryModel entry)
+        public static DtoEntry convertModelToDTO(EntryModel entry)
         {
-            DTOEntry dtoEntry = new DTOEntry();
+            DtoEntry dtoEntry = new DtoEntry();
             if (entry != null)
             {
                 dtoEntry.CC = entry.CC;

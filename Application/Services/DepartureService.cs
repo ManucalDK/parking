@@ -25,12 +25,12 @@ namespace Application.Services
             _cellService = cellService;
         }
 
-        public IEnumerable<DTODeparture> GetDepartures()
+        public IEnumerable<DtoDeparture> GetDepartures()
         {
             return DepartureMapper.ConvertEntityToDTO(_departureRepository.List().ToList());
         }
 
-        public DTODeparture GetEntryById(string id)
+        public DtoDeparture GetEntryById(string id)
         {
             return DepartureMapper.ConvertEntityToDTO(_departureRepository.GetById(id));
         }
@@ -46,7 +46,7 @@ namespace Application.Services
             return _departureRepository.List(dr => dr.IdVehicle == vehicleId).FirstOrDefault();
         }
 
-        public DTODeparture RegistryDeparture(DTODeparture departure)
+        public DtoDeparture RegistryDeparture(DtoDeparture departure)
         {
             double totalCharge;
             var departureTime = DateTime.Now;

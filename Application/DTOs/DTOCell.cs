@@ -2,7 +2,7 @@
 
 namespace Application.DTOs
 {
-    public class DTOCell : BaseDTO
+    public class DtoCell : BaseDto
     {
         public VehicleTypeEnum IdVehicleType { get; set; }
 

@@ -10,10 +10,10 @@ namespace Application.Interfaces
 
         DepartureEntity GetDepartureByEntryId(string id);
 
-        DTODeparture RegistryDeparture(DTODeparture entry);
+        DtoDeparture RegistryDeparture(DtoDeparture entry);
 
-        IEnumerable<DTODeparture> GetDepartures();
+        IEnumerable<DtoDeparture> GetDepartures();
 
-        DTODeparture GetEntryById(string id);
+        DtoDeparture GetEntryById(string id);
     }
 }

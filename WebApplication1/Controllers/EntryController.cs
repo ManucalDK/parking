@@ -22,7 +22,7 @@ namespace WebApp.Controllers
 
         //GET: api/Entry
         [HttpGet]
-        public ActionResult<IEnumerable<DTOEntry>> GetEntries()
+        public ActionResult<IEnumerable<DtoEntry>> GetEntries()
         {
             var cells = _entryService.GetEntries();
             return Ok(cells);
@@ -30,7 +30,7 @@ namespace WebApp.Controllers
 
         //GET: api/Entry/xx
         [HttpGet("{id}")]
-        public ActionResult<DTOEntry> GetEntry(string id)
+        public ActionResult<DtoEntry> GetEntry(string id)
         {
             var cell = EntryMapper.convertDTOToModel(_entryService.GetEntryById(id));
 
@@ -44,9 +44,9 @@ namespace WebApp.Controllers
 
         //POST: api/Entry
         [HttpPost]
-        public ActionResult<IEnumerable<DTOEntry>> SaveEntry(EntryModel entry)
+        public ActionResult<IEnumerable<DtoEntry>> SaveEntry(EntryModel entry)
         {
-            DTOEntry added = new DTOEntry();
+            DtoEntry added = new DtoEntry();
             if (ModelState.IsValid)
             {
                 try

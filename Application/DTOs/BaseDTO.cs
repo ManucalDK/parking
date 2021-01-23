@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Application.DTOs
 {
-    public abstract class BaseDTO
+    public abstract class BaseDto
     {
         public string Id { get; set; }
     }

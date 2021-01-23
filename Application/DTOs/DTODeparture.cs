@@ -3,7 +3,7 @@ using System;
 
 namespace Application.DTOs
 {
-    public class DTODeparture : BaseDTO
+    public class DtoDeparture : BaseDto
     {
 
         public string IdVehicle { get; set; }

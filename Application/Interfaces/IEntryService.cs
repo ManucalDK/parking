@@ -6,11 +6,11 @@ namespace Application.Interfaces
 {
     public interface IEntryService
     {
-        IEnumerable<DTOEntry> GetEntries();
+        IEnumerable<DtoEntry> GetEntries();
 
-        DTOEntry RegistryVehicle(DTOEntry entry);
+        DtoEntry RegistryVehicle(DtoEntry entry);
 
-        DTOEntry GetEntryById(string id);
+        DtoEntry GetEntryById(string id);
 
         EntryEntity GetLastEntryByVehicleId(string id);
     }

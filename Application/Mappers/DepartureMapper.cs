@@ -8,7 +8,7 @@ namespace Application.Mappers
 {
     public static class DepartureMapper
     {
-        public static DepartureEntity ConvertDTOToEntity(DTODeparture dtoDeparture, EntryEntity entryEntity, double rateTotal)
+        public static DepartureEntity ConvertDTOToEntity(DtoDeparture dtoDeparture, EntryEntity entryEntity, double rateTotal)
         {
             DepartureEntity departureEntity = new DepartureEntity();
             if (dtoDeparture != null)
@@ -23,9 +23,9 @@ namespace Application.Mappers
             return departureEntity;
         }
 
-        public static DTODeparture ConvertEntityToDTO(DepartureEntity departureEntity)
+        public static DtoDeparture ConvertEntityToDTO(DepartureEntity departureEntity)
         {
-            DTODeparture dtoDeparture = new DTODeparture();
+            DtoDeparture dtoDeparture = new DtoDeparture();
             if (departureEntity != null)
             {
                 dtoDeparture.Id = departureEntity.Id;
@@ -37,12 +37,12 @@ namespace Application.Mappers
             return dtoDeparture;
         }
 
-        public static IEnumerable<DTODeparture> ConvertEntityToDTO(List<DepartureEntity> departureEntity)
+        public static IEnumerable<DtoDeparture> ConvertEntityToDTO(List<DepartureEntity> departureEntity)
         {
-            IEnumerable<DTODeparture> dtoDeparture = new List<DTODeparture>();
+            IEnumerable<DtoDeparture> dtoDeparture = new List<DtoDeparture>();
             if (departureEntity?.Count > 0)
             {
-                dtoDeparture = departureEntity.Select(e => new DTODeparture()
+                dtoDeparture = departureEntity.Select(e => new DtoDeparture()
                 {
                     Id = e.Id,
                     DepartureTime = e.DepartureTime,

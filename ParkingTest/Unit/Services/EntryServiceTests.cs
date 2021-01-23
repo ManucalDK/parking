@@ -43,7 +43,7 @@ namespace Application.Services.Tests
         {
             // Arrange (preparación, organizar)
             var entryBuilder = new EntryDTOBuilder();
-            DTOEntry entry = entryBuilder
+            DtoEntry entry = entryBuilder
                             .WithCC(null)
                             .Build();
 
@@ -80,7 +80,7 @@ namespace Application.Services.Tests
 
 
             var entryService = new EntryService(entryRepository.Object, _cellService.Object, _departureService.Object, _placaService.Object);
-            DTOEntry entry = entryBuilder.Build();
+            DtoEntry entry = entryBuilder.Build();
 
             // Act
             try
@@ -112,7 +112,7 @@ namespace Application.Services.Tests
             var departureEntity = new DepartureEntityBuilder()
                                   .WithIdEntry(uniqueId)
                                   .Build();
-            DTOEntry entry = entryBuilder.Build();
+            DtoEntry entry = entryBuilder.Build();
 
             entryRepository.Setup(er => er.List(e => e.IdVehicle == entry.IdVehicle)).Returns(entryList);
 
@@ -142,7 +142,7 @@ namespace Application.Services.Tests
                 .WithVehicleType(VehicleTypeEnum.motorcycle)
                 .WithCC("1000");
 
-            DTOEntry entry = entryBuilder.Build();
+            DtoEntry entry = entryBuilder.Build();
             _cellService.Setup(cs => cs.ExistsQuotaByVehicleType(VehicleTypeEnum.motorcycle)).Returns(true);
             var entryService = new EntryService(entryRepository.Object, _cellService.Object, _departureService.Object, _placaService.Object);
 
@@ -168,7 +168,7 @@ namespace Application.Services.Tests
                 .WithVehicleId("SFL55A")
                 .WithVehicleType(VehicleTypeEnum.car);
 
-            DTOEntry entry = entryBuilder.Build();
+            DtoEntry entry = entryBuilder.Build();
             _cellService.Setup(cs => cs.ExistsQuotaByVehicleType(VehicleTypeEnum.car)).Returns(true);
             var entryService = new EntryService(entryRepository.Object, _cellService.Object, _departureService.Object, _placaService.Object);
 
@@ -263,7 +263,7 @@ namespace Application.Services.Tests
             var result = entryServiceClass.GetEntryById(id);
 
             // Assert
-            Assert.IsTrue(result.GetType() == typeof(DTOEntry));
+            Assert.IsTrue(result.GetType() == typeof(DtoEntry));
         }
 
         [TestMethod()]
@@ -321,7 +321,7 @@ namespace Application.Services.Tests
             var entryServiceClass = new EntryService(entryRepository.Object, _cellService.Object, _departureService.Object, _placaService.Object);
 
             // Act
-            IEnumerable<DTOEntry> result = entryServiceClass.GetEntries();
+            IEnumerable<DtoEntry> result = entryServiceClass.GetEntries();
 
             // Assert
             Assert.IsTrue(result.Count() <= 0);

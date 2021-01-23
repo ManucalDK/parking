@@ -33,9 +33,9 @@ namespace ParkingTest.Builders
             return this;
         }
 
-        public DTOEntry Build()
+        public DtoEntry Build()
         {
-            return new DTOEntry() { 
+            return new DtoEntry() { 
                 CC = CC,
                 IdVehicle = IdVehicle,
                 IdVehicleType = IdVehicleType

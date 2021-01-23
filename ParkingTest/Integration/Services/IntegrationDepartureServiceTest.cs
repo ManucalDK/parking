@@ -20,8 +20,8 @@ namespace ParkingTest.Integration.Services
         private IRepository<DepartureEntity> departureRepository;
         private IRepository<RateEntity> rateRepository;
         private IRepository<PlacaEntity> placaRepository;
+        private IRepository<PicoPlacaDigits> picoPlacarepository;
 
-        EntryService entryService;
         CellService cellService;
         DepartureService departureService;
         PlacaService placaService;
@@ -38,13 +38,13 @@ namespace ParkingTest.Integration.Services
             departureRepository = new Repository<DepartureEntity>(contexto);
             rateRepository = new Repository<RateEntity>(contexto);
             placaRepository = new Repository<PlacaEntity>(contexto);
+            picoPlacarepository = new Repository<PicoPlacaDigits>(contexto);
 
             cellService = new CellService(cellRepository);
             rateService = new RateService(rateRepository);
-            placaService = new PlacaService(placaRepository);
+            placaService = new PlacaService(placaRepository, picoPlacarepository);
 
             departureService = new DepartureService(departureRepository, entryRepository, rateService, cellService);
-            entryService = new EntryService(entryRepository, cellService, departureService, placaService);
             contexto.Database.EnsureCreated();
         }
 
@@ -53,7 +53,7 @@ namespace ParkingTest.Integration.Services
         {
             // Arrange
             var idVehicle = "SFL555";
-            DTODeparture entryDTOBuilder = new DepartureDTOBuilder().WithIdVehicle(idVehicle).Build();
+            DtoDeparture entryDTOBuilder = new DepartureDTOBuilder().WithIdVehicle(idVehicle).Build();
             var valueToPay = 11000;
             entryRepository.Add(new EntryEntity()
             {
@@ -76,7 +76,7 @@ namespace ParkingTest.Integration.Services
         {
             // Arrange
             var idVehicle = "SFL555";
-            DTODeparture entryDTOBuilder = new DepartureDTOBuilder().WithIdVehicle(idVehicle).Build();
+            DtoDeparture entryDTOBuilder = new DepartureDTOBuilder().WithIdVehicle(idVehicle).Build();
             var valueToPay = 6000;
             entryRepository.Add(new EntryEntity()
             {
