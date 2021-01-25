@@ -138,21 +138,5 @@ namespace ParkingTest.Integration.Services
             // Assert
             Assert.IsTrue(cellByVehicleType.NumCellAvaliable == (cellsAvaliableBeforeEntry - 1));
         }
-
-        [TestMethod()]
-        public void EntryVehicle_ShouldReturn_DtoEntry()
-        {
-            // Arrange
-            DtoEntry entryDTOBuilder = new EntryDTOBuilder()
-                                    .WithVehicleType(VehicleTypeEnum.car)
-                                    .WithVehicleId("AAA117")
-                                    .Build();
-
-            // Act
-            var response = entryService.RegistryVehicle(entryDTOBuilder);
-
-            // Assert
-            Assert.AreEqual(typeof(DtoEntry),response.GetType());
-        }
     }
 }
