@@ -55,7 +55,7 @@ namespace WebApp.Controllers
                 }
                 catch (Exception e)
                 {
-                    if (e is CellException || e is EntryException || e is PlacaException)
+                    if (e is AppException)
                     {
                         return UnprocessableEntity(e.Message);
                     }

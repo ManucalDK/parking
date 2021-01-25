@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace AppCore.Exceptions
 {
     [Serializable]
-    public class CellException : Exception
+    public class CellException : AppException
     {
         public CellException()
         {

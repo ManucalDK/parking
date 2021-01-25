@@ -55,7 +55,7 @@ namespace WebApp.Controllers
                 }
                 catch (Exception e)
                 {
-                    if (e is DepartureException)
+                    if (e is AppException)
                     {
                         return UnprocessableEntity(e.Message);
                     }

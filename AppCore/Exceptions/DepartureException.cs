@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace AppCore.Exceptions
 {
     [Serializable]
-    public class DepartureException : Exception
+    public class DepartureException : AppException
     {
         public DepartureException()
         {

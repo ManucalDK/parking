@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 namespace AppCore.Exceptions
 {
     [Serializable]
-    public class PlacaException : Exception
+    public class PlacaException : AppException
     {
         public PlacaException()
         {

@@ -7,11 +7,10 @@ using Application.Services;
 using Infrastructure.Data;
 using Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ParkingTest.Builders;
 using System;
-using System.Collections.Generic;
+using System.Linq;
 
 namespace ParkingTest.Integration.Services
 {
@@ -75,6 +74,85 @@ namespace ParkingTest.Integration.Services
                 Assert.AreEqual(e.Message, response);
                 throw;
             }
+        }
+
+        [TestMethod(), ExpectedException(typeof(EntryException))]
+        public void EntryVehicle_WithoutDeparture_ShouldReturnAnException()
+        {
+            // Arrange
+            DtoEntry entryDTOBuilder = new EntryDTOBuilder()
+                                    .WithVehicleType(AppCore.Enums.VehicleTypeEnum.car)
+                                    .WithVehicleId("AAA117")
+                                    .Build();
+            var response = "El vehículo que está registrando posee una salida pendiente";
+
+            try
+            {
+                entryService.RegistryVehicle(entryDTOBuilder);
+                entryService.RegistryVehicle(entryDTOBuilder);
+            }
+            catch (Exception e)
+            {
+                Assert.AreEqual(e.Message, response);
+                throw;
+            }
+        }
+
+        [TestMethod(), ExpectedException(typeof(EntryException))]
+        public void EntryVehicle_WithBadPlaca_ShouldReturnAnException()
+        {
+            // Arrange
+            DtoEntry entryDTOBuilder = new EntryDTOBuilder()
+                                    .WithVehicleType(AppCore.Enums.VehicleTypeEnum.car)
+                                    .WithVehicleId("AAA11B")
+                                    .Build();
+            var response = "Hubo un problema al leer la placa del vehículo. Verifique el tipo de vehículo e intente de nuevo";
+
+            try
+            {
+                entryService.RegistryVehicle(entryDTOBuilder);
+            }
+            catch (Exception e)
+            {
+                Assert.AreEqual(e.Message, response);
+                throw;
+            }
+        }
+
+        [TestMethod()]
+        public void EntryVehicle_ShouldReturn_CellWithAvaliableWith1Decrease()
+        {
+            // Arrange
+            DtoEntry entryDTOBuilder = new EntryDTOBuilder()
+                                    .WithVehicleType(VehicleTypeEnum.car)
+                                    .WithVehicleId("AAA117")
+                                    .Build();
+
+
+            var cellsAvaliableBeforeEntry = cellRepository.List(cr => cr.IdVehicleType == VehicleTypeEnum.car).FirstOrDefault()?.NumCellAvaliable;
+
+            // Act
+            entryService.RegistryVehicle(entryDTOBuilder);
+            var cellByVehicleType = cellRepository.List(cr => cr.IdVehicleType == VehicleTypeEnum.car).FirstOrDefault();
+
+            // Assert
+            Assert.IsTrue(cellByVehicleType.NumCellAvaliable == (cellsAvaliableBeforeEntry - 1));
+        }
+
+        [TestMethod()]
+        public void EntryVehicle_ShouldReturn_DtoEntry()
+        {
+            // Arrange
+            DtoEntry entryDTOBuilder = new EntryDTOBuilder()
+                                    .WithVehicleType(VehicleTypeEnum.car)
+                                    .WithVehicleId("AAA117")
+                                    .Build();
+
+            // Act
+            var response = entryService.RegistryVehicle(entryDTOBuilder);
+
+            // Assert
+            Assert.AreEqual(typeof(DtoEntry),response.GetType());
         }
     }
 }

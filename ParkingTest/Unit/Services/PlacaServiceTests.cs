@@ -98,5 +98,26 @@ namespace Application.Services.Tests
 
             Assert.IsTrue(response);
         }
+
+        [TestMethod()]
+        public void HasPicoPlaca_ShouldReturnFalse_WhenExistsPicoPlaca()
+        {
+            // Arrange
+            var vehicleTypeId = VehicleTypeEnum.car;
+            var placaEntity = new PlacaBuilder().Build();
+            var result = placaEntity;
+            int day = 5;
+            int vehicleLastNumberId = 9;
+            var listPicoPlaca = new List<PicoPlacaDigits>();
+
+            _placaRepository.Setup(setup => setup.List(repo => repo.Type == vehicleTypeId)).Returns(new List<PlacaEntity> { placaEntity });
+            _picoPlacarepository.Setup(setup => setup.List(repo => repo.PlacaEntityID == result.Id && repo.Day == day && repo.Digit == vehicleLastNumberId)).Returns(listPicoPlaca);
+
+            var placaService = new PlacaService(_placaRepository.Object, _picoPlacarepository.Object);
+
+            var response = placaService.HasPicoPlaca(vehicleTypeId, day, vehicleLastNumberId);
+
+            Assert.IsFalse(response);
+        }
     }
 }
