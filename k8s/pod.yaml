@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cpu-demo
+  namespace: default
+spec:
+  containers:
+  - name: angular-cliente
+    image: carlosruales/angular-cliente
+    resources:
+      limits:
+        cpu: "1"
+      requests:
+        cpu: "0.5"

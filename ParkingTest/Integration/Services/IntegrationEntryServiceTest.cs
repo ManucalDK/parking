@@ -75,5 +75,25 @@ namespace ParkingTest.Integration.Services
                 throw;
             }
         }
+
+        [TestMethod()]
+        public void EntryVehicle_ShouldReturn_CellWithAvaliableWith1Decrease()
+        {
+            // Arrange
+            DtoEntry entryDTOBuilder = new EntryDTOBuilder()
+                                    .WithVehicleType(VehicleTypeEnum.car)
+                                    .WithVehicleId("AAA117")
+                                    .Build();
+
+
+            var cellsAvaliableBeforeEntry = cellRepository.List(cr => cr.IdVehicleType == VehicleTypeEnum.car).FirstOrDefault()?.NumCellAvaliable;
+
+            // Act
+            entryService.RegistryVehicle(entryDTOBuilder);
+            var cellByVehicleType = cellRepository.List(cr => cr.IdVehicleType == VehicleTypeEnum.car).FirstOrDefault();
+
+            // Assert
+            Assert.IsTrue(cellByVehicleType.NumCellAvaliable == (cellsAvaliableBeforeEntry - 1));
+        }
     }
 }

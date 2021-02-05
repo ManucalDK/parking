@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: angular-front
+  name: angular-front
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: angular-front
+  template:
+    metadata:
+      labels:
+        app: angular-front
+    spec:     
+      containers:
+      - name : angular-front
+        image: carlosruales/angular-cliente
+        imagePullPolicy: "Always"       
+        ports:
+        - containerPort: 80
+          protocol: TCP    
+        resources:
+          limits:
+            cpu: "1"
+          requests:
+            cpu: "0.5"                        
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 0
+

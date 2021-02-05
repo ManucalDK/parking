@@ -1,5 +1,5 @@
 import { RegisterService } from '../../../services/entry/register.service';
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroupDirective, Validators } from '@angular/forms';
 import { registerFormModel } from '../../../models/entry/registerFormModel';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -11,7 +11,7 @@ import { DialogMessageComponent } from '../../../shared/components/dialog-messag
   templateUrl: './register-form.component.html',
   styleUrls: ['./register-form.component.css']
 })
-export class RegisterFormComponent {
+export class RegisterFormComponent implements OnInit {
   
   registerForm = this.fb.group({
     placa: [null, Validators.required],
@@ -35,6 +35,11 @@ export class RegisterFormComponent {
   constructor(private fb: FormBuilder,
               private registerService: RegisterService,
               public dialog: MatDialog) {}
+  ngOnInit(): void {
+    this.registerService.getWeatherTest().subscribe(result => {
+      console.log(result)
+    })
+  }
 
   async onSubmit() {
     this.generalError = "";

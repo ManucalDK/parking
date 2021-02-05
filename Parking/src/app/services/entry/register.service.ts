@@ -18,4 +18,8 @@ export class RegisterService {
   getListEntries() {
     return this.http.get<listModel[]>(`${environment.url_api}/Entry`);
   }
+
+  getWeatherTest() {
+    return this.http.get<any[]>(`${environment.url_api}/weatherforecast`);
+  }
 }
